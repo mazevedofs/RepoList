@@ -15,6 +15,7 @@ enum RepoState: String {
 }
 
 final class PullRequestTableViewController: UITableViewController {
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var repo: Repo?
     var pull: [PullRequest] = []
@@ -22,15 +23,29 @@ final class PullRequestTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = repo?.name
-        loadData()
+        loadData(state: .open)
         prepareTableView()
-
+        setupSegmentedControl()
+        tableView.tableFooterView = UIView()
     }
     
-    private func loadData() {
-        RepoAPI.loadPullRequestsByRepo(user: repo?.owner?.login ?? "", repo: repo?.name ?? "", state: .open, onComplete: { (response) in
+    private func setupSegmentedControl() {
+        segmentedControl.setTitle("Open", forSegmentAt: 0)
+        segmentedControl.setTitle("Closed", forSegmentAt: 1)
+    }
+    
+    @IBAction func selectSegmentedControl(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+                self.loadData(state: .open)
+        } else if sender.selectedSegmentIndex == 1 {
+                self.loadData(state: .closed)
+
+        }
+    }
+    
+    private func loadData(state: RepoState) {
+        RepoAPI.loadPullRequestsByRepo(user: repo?.owner?.login ?? "", repo: repo?.name ?? "", state: state, onComplete: { (response) in
             self.pull = response
-            print(self.pull)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -54,13 +69,11 @@ final class PullRequestTableViewController: UITableViewController {
         return pull.count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pull", for: indexPath) as! PullRequestTableViewCell
         let pullItem = pull[indexPath.row]
         cell.prepare(with: pullItem)
         print(pullItem)
-
         return cell
     }
     

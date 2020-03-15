@@ -30,7 +30,6 @@ final class ListTableViewController: UITableViewController {
     func loadData()  {
         RepoAPI.loadRepoList(language: "Java", sort: "stars", page: currentPage, onComplete: { (repoResponse) in
             self.repo = repoResponse.repo
-//            print(self.repo)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
