@@ -32,9 +32,7 @@ class PullRequestTableViewCell: UITableViewCell {
         creatorPicImageView.source(from: pull.user?.avatar ?? "")
         creatorNameLabel.text = pull.user?.login ?? ""
         createdAtLabel.text = "Created at:"
-        
         creationDateLabel.text = Utils.getFormattedDateFrom(date: pull.creationDate.valid)
-        print(creationDateLabel.text!)
         
         creatorPicImageView.layer.cornerRadius = creatorPicImageView.frame.height / 2
         creatorPicImageView.clipsToBounds = true

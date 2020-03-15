@@ -100,7 +100,6 @@ final class PullRequestTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pull", for: indexPath) as! PullRequestTableViewCell
         let pullItem = pull[indexPath.row]
         cell.prepare(with: pullItem)
-        print(pullItem)
         return cell
     }
     
