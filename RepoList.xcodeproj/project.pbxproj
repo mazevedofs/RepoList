@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A28689D7241EA29500F8281B /* SegnentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28689D5241EA29500F8281B /* SegnentedControlTableViewCell.swift */; };
+		A28689D8241EA29500F8281B /* SegnentedControlTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A28689D6241EA29500F8281B /* SegnentedControlTableViewCell.xib */; };
+		A28689DB241EA2D600F8281B /* PullRequestTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A28689D9241EA2D600F8281B /* PullRequestTableViewCell.swift */; };
+		A28689DC241EA2D600F8281B /* PullRequestTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A28689DA241EA2D600F8281B /* PullRequestTableViewCell.xib */; };
 		A2F5843D241C169A0098BC3F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5843C241C169A0098BC3F /* AppDelegate.swift */; };
 		A2F58444241C169A0098BC3F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2F58442241C169A0098BC3F /* Main.storyboard */; };
 		A2F58446241C169B0098BC3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2F58445241C169B0098BC3F /* Assets.xcassets */; };
@@ -24,6 +28,8 @@
 		A2F58487241D70880098BC3F /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F58486241D70880098BC3F /* UIColor+Extension.swift */; };
 		A2F58489241D72DA0098BC3F /* Optionnal+Valid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F58488241D72DA0098BC3F /* Optionnal+Valid.swift */; };
 		A2F5848C241D7C960098BC3F /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F5848A241D7C960098BC3F /* ListTableViewCell.swift */; };
+		A2F58494241DAD8B0098BC3F /* PullRequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F58492241DAD8B0098BC3F /* PullRequestTableViewController.swift */; };
+		A2F58497241DAEF90098BC3F /* PullRequestTableViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2F58496241DAEF90098BC3F /* PullRequestTableViewController.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A28689D5241EA29500F8281B /* SegnentedControlTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegnentedControlTableViewCell.swift; sourceTree = "<group>"; };
+		A28689D6241EA29500F8281B /* SegnentedControlTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SegnentedControlTableViewCell.xib; sourceTree = "<group>"; };
+		A28689D9241EA2D600F8281B /* PullRequestTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestTableViewCell.swift; sourceTree = "<group>"; };
+		A28689DA241EA2D600F8281B /* PullRequestTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PullRequestTableViewCell.xib; sourceTree = "<group>"; };
 		A2F58439241C169A0098BC3F /* RepoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RepoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A2F5843C241C169A0098BC3F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A2F58443241C169A0098BC3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,6 +77,8 @@
 		A2F58486241D70880098BC3F /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		A2F58488241D72DA0098BC3F /* Optionnal+Valid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optionnal+Valid.swift"; sourceTree = "<group>"; };
 		A2F5848A241D7C960098BC3F /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		A2F58492241DAD8B0098BC3F /* PullRequestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullRequestTableViewController.swift; sourceTree = "<group>"; };
+		A2F58496241DAEF90098BC3F /* PullRequestTableViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PullRequestTableViewController.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +182,12 @@
 		A2F58472241C25EC0098BC3F /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				A2F58492241DAD8B0098BC3F /* PullRequestTableViewController.swift */,
+				A2F58496241DAEF90098BC3F /* PullRequestTableViewController.storyboard */,
+				A28689D5241EA29500F8281B /* SegnentedControlTableViewCell.swift */,
+				A28689D6241EA29500F8281B /* SegnentedControlTableViewCell.xib */,
+				A28689D9241EA2D600F8281B /* PullRequestTableViewCell.swift */,
+				A28689DA241EA2D600F8281B /* PullRequestTableViewCell.xib */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -310,7 +328,10 @@
 				A2F58449241C169B0098BC3F /* LaunchScreen.storyboard in Resources */,
 				A2F58446241C169B0098BC3F /* Assets.xcassets in Resources */,
 				A2F58470241C179A0098BC3F /* List.storyboard in Resources */,
+				A2F58497241DAEF90098BC3F /* PullRequestTableViewController.storyboard in Resources */,
 				A2F58444241C169A0098BC3F /* Main.storyboard in Resources */,
+				A28689DC241EA2D600F8281B /* PullRequestTableViewCell.xib in Resources */,
+				A28689D8241EA29500F8281B /* SegnentedControlTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,7 +356,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2F58494241DAD8B0098BC3F /* PullRequestTableViewController.swift in Sources */,
 				A2F5846D241C16E90098BC3F /* ListTableViewController.swift in Sources */,
+				A28689DB241EA2D600F8281B /* PullRequestTableViewCell.swift in Sources */,
 				A2F58478241D21F50098BC3F /* Repo.swift in Sources */,
 				A2F5847F241D59AB0098BC3F /* UIImageView+Extension.swift in Sources */,
 				A2F58487241D70880098BC3F /* UIColor+Extension.swift in Sources */,
@@ -344,6 +367,7 @@
 				A2F58475241C260C0098BC3F /* API.swift in Sources */,
 				A2F5847A241D28C40098BC3F /* Owner.swift in Sources */,
 				A2F5843D241C169A0098BC3F /* AppDelegate.swift in Sources */,
+				A28689D7241EA29500F8281B /* SegnentedControlTableViewCell.swift in Sources */,
 				A2F5848C241D7C960098BC3F /* ListTableViewCell.swift in Sources */,
 				A2F58489241D72DA0098BC3F /* Optionnal+Valid.swift in Sources */,
 			);

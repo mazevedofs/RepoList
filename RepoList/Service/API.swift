@@ -66,9 +66,11 @@ class RepoAPI {
         dataTask.resume()
     }
 
-    class func loadPullRequestsByRepo(user: String, repo: String, state: String, onComplete: @escaping([PullRequest]) -> Void, onError: @escaping(NetworkError) -> Void){
+    class func loadPullRequestsByRepo(user: String, repo: String, state: RepoState, onComplete: @escaping([PullRequest]) -> Void, onError: @escaping(NetworkError) -> Void){
     
-        let endpoint = "/repos/\(user)/\(repo)/pulls?q=\(state)"
+        let endpoint = "/repos/\(user)/\(repo)/pulls?state=\(state)"
+        
+        
         guard let url = URL(string: baseURL + endpoint) else {
             onError(.url)
             return

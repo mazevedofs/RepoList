@@ -32,8 +32,10 @@ class ListTableViewCell: UITableViewCell {
         forkImageView.image = UIImage(named: "fork")
         starLabel.text = "\(repo.stars.valid)"
         forkLabel.text = "\(repo.forks.valid)"
-        ownerImageView.source(from: repo.owner?.avatar.valid ?? "" )
+        ownerImageView.source(from: repo.owner?.avatar ?? "" )
         
+        ownerImageView.layer.cornerRadius = ownerImageView.frame.height / 2
+        ownerImageView.clipsToBounds = true
     }
     
 }

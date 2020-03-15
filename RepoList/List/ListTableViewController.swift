@@ -16,29 +16,21 @@ enum SortOrder: String {
 final class ListTableViewController: UITableViewController {
     
     var repo: [Repo] = []
-    var currentPage = 1
+    var currentPage = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
-        self.title = ""
+        self.title = "Repo Java"
         
         loadData(language: "java", sort: .star, page: currentPage)
-        prepareTableView()
     }
     
-    private func prepareTableView() {
-        let listTableViewCell = UINib(nibName: String(describing: ListTableViewCell.self), bundle: nil)
-        tableView.register(listTableViewCell, forCellReuseIdentifier: "list")
-
-    }
-
-    // MARK: - Table view data source
-
     func loadData(language: String, sort: SortOrder, page: Int)  {
         RepoAPI.loadRepoList(language: "Java", sort: "stars", page: 1, onComplete: { (repoResponse) in
             self.repo = repoResponse.repo
+            print(self.repo)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -46,24 +38,34 @@ final class ListTableViewController: UITableViewController {
             print(error)
         }
     }
+    
+    // MARK: - Table view data source
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return repo.count
     }
 
     
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "testCell", for: indexPath)
-//
-//
-//        return cell
-//    }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath) as! ListTableViewCell
+        let repoItem = repo[indexPath.row]
+        cell.prepare(with: repoItem)
+        return cell
+    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+        return 150
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sb = UIStoryboard(name: "PullRequestTableViewController", bundle: nil)
+        guard let pullRequestVC = sb.instantiateInitialViewController() as? PullRequestTableViewController else { return }
+        pullRequestVC.repo = repo[indexPath.row]
+        navigationController?.pushViewController(pullRequestVC, animated: true)
     }
 
 }

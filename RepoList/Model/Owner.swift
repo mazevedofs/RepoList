@@ -13,6 +13,12 @@ struct Owner: Codable {
     var login: String?
     var avatar: String?
     
+    enum CodingKeys: String, CodingKey {
+        case id
+        case login
+        case avatar = "avatar_url"
+    }
+    
     init(id: Int, login: String, avatar: String) {
         self.id = id
         self.login = login
