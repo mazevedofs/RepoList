@@ -24,13 +24,13 @@ final class ListTableViewController: UITableViewController {
         navigationItem.largeTitleDisplayMode = .always
         self.title = "Repo Java"
         
-        loadData(language: "java", sort: .star, page: currentPage)
+        loadData()
     }
     
-    func loadData(language: String, sort: SortOrder, page: Int)  {
-        RepoAPI.loadRepoList(language: "Java", sort: "stars", page: 1, onComplete: { (repoResponse) in
+    func loadData()  {
+        RepoAPI.loadRepoList(language: "Java", sort: "stars", page: currentPage, onComplete: { (repoResponse) in
             self.repo = repoResponse.repo
-            print(self.repo)
+//            print(self.repo)
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }

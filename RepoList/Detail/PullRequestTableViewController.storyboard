@@ -14,9 +14,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="0I0-hP-ng0">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eZS-AI-4Bl">
+                                    <rect key="frame" x="40" y="7" width="334" height="31"/>
+                                    <segments>
+                                        <segment title="First"/>
+                                        <segment title="Second"/>
+                                    </segments>
+                                </segmentedControl>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="eZS-AI-4Bl" firstAttribute="top" secondItem="0I0-hP-ng0" secondAttribute="top" constant="7" id="0cb-UM-FlH"/>
+                                <constraint firstItem="eZS-AI-4Bl" firstAttribute="centerY" secondItem="0I0-hP-ng0" secondAttribute="centerY" id="PQm-LX-BQz"/>
+                                <constraint firstItem="eZS-AI-4Bl" firstAttribute="leading" secondItem="0I0-hP-ng0" secondAttribute="leading" constant="40" id="USI-li-KNS"/>
+                                <constraint firstAttribute="trailing" secondItem="eZS-AI-4Bl" secondAttribute="trailing" constant="40" id="jHE-oI-Hus"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="prototype" id="Fau-UU-aeK">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fau-UU-aeK" id="yt2-4O-xqY">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>

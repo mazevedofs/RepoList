@@ -23,8 +23,19 @@ class PullRequestTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        selectionStyle = .none
+    }
+    
+    func prepare(with pull: PullRequest) {
+        titleLabel.text = pull.title.valid
+        bodyLabel.text = pull.body.valid
+        creatorPicImageView.source(from: pull.user?.avatar ?? "")
+        creatorNameLabel.text = pull.user?.login ?? ""
+        createdAtLabel.text = "Created at:"
+        creationDateLabel.text = Utils.getFormattedDateFrom(date: pull.creationDate.valid)
+        
+        creatorPicImageView.layer.cornerRadius = creatorPicImageView.frame.height / 2
+        creatorPicImageView.clipsToBounds = true
     }
     
 }
