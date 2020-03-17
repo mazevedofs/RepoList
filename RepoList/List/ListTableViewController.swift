@@ -20,6 +20,7 @@ final class ListTableViewController: UITableViewController {
         self.title = "JavaPop"
         
         loadData()
+        currentPage = 1
     }
     
     // MARK: - Methods
@@ -64,6 +65,30 @@ final class ListTableViewController: UITableViewController {
         guard let pullRequestVC = sb.instantiateInitialViewController() as? PullRequestTableViewController else { return }
         pullRequestVC.repo = repo[indexPath.row]
         navigationController?.pushViewController(pullRequestVC, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastElement = repo.count - 1
+        if indexPath.row == lastElement {
+            print("LOAD MORE")
+            currentPage = +1
+            
+//            infiniteScroll(page: currentPage)
+        }
+    }
+    
+    func infiniteScroll(page: Int){
+        RepoAPI.loadMoreRepoList(language: "Java", sort: "stars", page: page, onComplete: { (response) in
+            self.repo = response.repo
+
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }) { (error) in
+            let alert = UIAlertController(title: "Oh oh, something wrong happened :(", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
     
 }

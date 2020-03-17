@@ -51,7 +51,71 @@ class RepoAPI {
                     do {
                         let apiResponse = try
                             JSONDecoder().decode(RepoResponse.self, from: data)
-                            onComplete(apiResponse)
+                        onComplete(apiResponse)
+                        if let linkHeader = response.allHeaderFields["Link"] as? String {
+                            let links = linkHeader.components(separatedBy: ",")
+
+                            var dictionary: [String: String] = [:]
+                            links.forEach({
+                                let components = $0.components(separatedBy:"; ")
+                                let cleanPath = components[0].trimmingCharacters(in: CharacterSet(charactersIn: "<>"))
+                                dictionary[components[1]] = cleanPath
+                            })
+
+                            if let nextPagePath = dictionary["rel=\"next\""] {
+                                print("nextPagePath: \(nextPagePath)")
+                                
+                            }
+                        }
+                    } catch {
+                        print(error.localizedDescription)
+                        onError(.unabledToDecode)
+                    }
+                } else {
+                    onError(.statusCode(code: response.statusCode))
+                }
+            } else {
+                onError(.taskError(error: error!))
+            }
+        }
+        dataTask.resume()
+    }
+    
+    class func loadMoreRepoList(language: String, sort: String, page: Int, onComplete: @escaping(RepoResponse) -> Void, onError: @escaping (NetworkError) -> Void) {
+        let endpoint = "/search/repositories?q=language:\(language)&sort=\(sort)&page=\(page)"
+        //&page=1
+        guard let url = URL(string: baseURL + endpoint) else {
+            onError(.url)
+            return
+        }
+        let task = URLRequest(url:url)
+        
+        let dataTask = session.dataTask(with: task) { data, response, error in
+            if error == nil {
+                guard let response = response as?  HTTPURLResponse else {
+                    onError(.noResponse)
+                    return
+                }
+                if response.statusCode == 200 {
+                    guard let data = data else { return }
+                    do {
+                        let apiResponse = try JSONDecoder().decode(RepoResponse.self, from: data)
+
+                        if let linkHeader = response.allHeaderFields["Link"] as? String {
+                            let links = linkHeader.components(separatedBy: ",")
+
+                            var dictionary: [String: String] = [:]
+                            links.forEach({
+                                let components = $0.components(separatedBy:"; ")
+                                let cleanPath = components[0].trimmingCharacters(in: CharacterSet(charactersIn: "<>"))
+                                dictionary[components[1]] = cleanPath
+                            })
+
+                            if let nextPagePath = dictionary["rel=\"next\""] {
+                                print("nextPagePath: \(nextPagePath)")
+                                onComplete(apiResponse)
+                            }
+                        }
                     } catch {
                         print(error.localizedDescription)
                         onError(.unabledToDecode)
@@ -69,7 +133,6 @@ class RepoAPI {
     class func loadPullRequestsByRepo(user: String, repo: String, state: RepoState, onComplete: @escaping([PullRequest]) -> Void, onError: @escaping(NetworkError) -> Void){
     
         let endpoint = "/repos/\(user)/\(repo)/pulls?state=\(state)"
-        
         
         guard let url = URL(string: baseURL + endpoint) else {
             onError(.url)

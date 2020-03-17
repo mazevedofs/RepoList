@@ -9,14 +9,12 @@
 import Foundation
 
 struct RepoResponse: Codable {
-    let  repo: [Repo]
-//    let first: String
-//    let last: String
-//    let next: String
-//    let prev: String
+    let repo: [Repo]
+    let page: Int?
     
     enum CodingKeys: String, CodingKey {
         case repo = "items"
+        case page
     }
 }
 
